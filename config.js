@@ -72,6 +72,13 @@ let config = {
 
 			}
 		},
+		{
+			module: 'MMM-DailyBibleVerse',
+			position: 'bottom_bar',
+			config:{
+				version: 'NIV'
+			}
+		}
 	]
 };
 
