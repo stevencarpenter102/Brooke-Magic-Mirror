@@ -30,7 +30,7 @@ let config = {
 	locale: "en-US",
 	logLevel: ["INFO", "LOG", "WARN", "ERROR"], // Add "DEBUG" for even more logging
 	timeFormat: 24,
-	units: "metric",
+	units: "imperial",
 	// serverOnly:  true/false/"local" ,
 	// local for armv6l processors, default
 	//   starts serveronly and then starts chrome browser
@@ -65,7 +65,7 @@ let config = {
 				locationID: "4371582", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
 				apiKey: "33fa524089399f0705c311479725ca52",
 				units: "imperial",
-				tempUnits: "impertial",
+				tempUnits: "imperial",
 				windUnits: "imperial",
 				roundTemp: true,
 				degreeLabel: true,
