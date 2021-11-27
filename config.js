@@ -39,8 +39,17 @@ let config = {
 
 	modules: [
 		{
+			module: "alert"
+		},
+		{
 			module: "clock",
-			position: "top_left"
+			position: "top_left",
+			config: {
+				timeFormat: "12",
+				timezone: "America/New_York",
+				displaySeconds: false,
+				showPeriodUpper: true,
+			}
 		},
 		{
 			module: "calendar",
@@ -53,6 +62,23 @@ let config = {
 						url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"
 					}
 				]
+			}
+		},
+		{
+			module: "weather",
+			position: "top_right",
+			config: {
+				weatherProvider: "openweathermap",
+				type: "current",
+				location: "Towson, MD",
+				locationID: "4371582", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+				apiKey: "33fa524089399f0705c311479725ca52",
+				units: "imperial",
+				tempUnits: "imperial",
+				windUnits: "imperial",
+				roundTemp: true,
+				degreeLabel: true,
+
 			}
 		},
 		{
