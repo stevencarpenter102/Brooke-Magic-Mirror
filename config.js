@@ -99,13 +99,141 @@ let config = {
 			}
 		},
 		{
+			module: "newsfeed",
+			position: "bottom_bar",
+			config:
+			{
+				feeds: [
+					{
+						title: "New York Times",
+						url: "https://www.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+					},
+					{
+						title: "BBC",
+						url: "https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml"
+					}
+				],
+				animationSpeed: 5000
+			}
+		},
+		{
+
+		    module: "MMM-News-QR",
+		    position: "middle_center",
+		    config: {
+			// possible values (polling, push)
+			// push only works with MagicMirror 2.8+ and broadcastNewsFeeds activated
+			updateType : "push",	// Interval to check the news
+			// interval: 2000,  	// only needed if updateType is polling
+			animationSpeed: 2500,	// Animation between change
+			colorDark: "#fff",	// Color of the Code
+			colorLight: "#000",	// Background Color
+			imageSize: 150  	// Size of the Code
+		    }
+		},
+		{
 			module: 'MMM-DailyBibleVerse',
 			position: 'bottom_bar',
 			config:{
 				version: 'NIV'
 			}
-		}
-	]
+		},
+		{
+			  module: "MMM-GroveGestures",
+			  position: "top_right",
+			  config: {
+			    autoStart: true, //When Mirror starts, recognition will start.
+			    verbose:false, // If set as `true`, useful messages will be logged.
+			    recognitionTimeout: 1000, //Gesture sequence will be ended after this time from last recognized gesture.
+			    cancelGesture: "WAVE", //If set, You can cancel gesture sequence with this gesture.
+			    visible: true, //Recognized gesture sequence will be displayed on position
+
+			    idleTimer: 1000*60*30, // `0` for disable, After this time from last gesture, onIdle will be executed.
+			    onIdle: { // See command section
+			      moduleExec: {
+				module: [],
+				exec: (module, gestures) => {
+				  module.hide(1000, null, {lockstring:"GESTURE"})
+				}
+			      }
+			    },
+			    onDetected: {
+			      notificationExec: {
+				notification: "GESTURE_DETECTED",
+			      },
+			      /* You can make Mirror to wake up the modules which were hidden by onIdle with any gestures.
+			      moduleExec: {
+				module: [],
+				exec: (module) => {
+				  module.show(1000, null, {lockstring:"GESTURE"})
+				}
+			      }
+			      */
+			    },
+
+			    gestureMapFromTo: { //When your sensor is installed with rotated direction, you can calibrate with this.
+			      "Up": "UP",
+			      "Down": "DOWN",
+			      "Left": "LEFT",
+			      "Right": "RIGHT",
+			      "Forward": "FORWARD",
+			      "Backward": "BACKWARD",
+			      "Clockwise": "CLOCKWISE",
+			      "anti-clockwise": "ANTICLOCKWISE",
+			      "wave": "WAVE"
+			    },
+
+			    defaultNotification: "GESTURE",
+			    pythonPath: "/usr/bin/python", // your python path
+
+			    defaultCommandSet: "default",
+			    commandSet: {
+			      "default": {
+//				"FORWARD-BACKWARD": {
+//				  notificationExec: {
+//				    notification: "ASSISTANT_ACTIVATE",
+//				    payload: null
+//				  }
+//				},
+//				"LEFT-RIGHT": {
+//		  		    notificationExec: {
+//				    notification: "ASSISTANT_CLEAR",
+//				    payload:null,
+//				  }
+//				},
+//				"CLOCKWISE": {
+//				  moduleExec: {
+//				    module: [],
+//				    exec: (module, gestures) => {
+//				      module.hide(1000, null, {lockstring:"GESTURE"})
+//				    }
+//				  }
+//				},
+//				"ANTICLOCKWISE": {
+//				  moduleExec: {
+//				    module: [],
+//				    exec: (module, gestures) => {
+//				      module.show(1000, null, {lockstring:"GESTURE"})
+//				    }
+//				  }
+//				},
+				"LEFT": {
+				  notificationExec: {
+				    notification: "ARTICLE_PREVIOUS",
+				    payload: null,
+				  }
+				},
+				"RIGHT": {
+				  notificationExec: {
+				    notification: "ARTICLE_NEXT",
+	
+				  }
+				},
+			      },
+			    },
+			  }
+			}
+		]
 };
 
 /*************** DO NOT EDIT THE LINE BELOW ***************/
